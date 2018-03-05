@@ -30,5 +30,14 @@ Route::group(['prefix' => 'user'],function(){
     //更改密碼的介面
     Route::get('update-password','UserController@updatePassword')->middleware(['user.auth']);
     //更改密碼的處理
-    Route::put('/update-password','UserController@updatePasswordProcess');
+    Route::put('/update-password','UserController@updatePasswordProcess')->middleware(['user.auth']);
+});
+
+Route::group(['prefix'=>'lend'],function(){
+    Route::get('/','LibraryLendController@lend')->middleware(['user.auth']);
+    Route::post('/','LibraryLendController@lendProcess')->middleware(['user.auth']);
+    Route::group(['prefix'=>'records'],function(){
+        Route::get('/','LibraryLendController@records')->middleware(['user.auth']);
+        Route::delete('/{id}/delete','LibraryLendController@recordsDelete')->middleware(['user.auth']);
+    });
 });

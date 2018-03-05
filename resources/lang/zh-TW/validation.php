@@ -140,5 +140,7 @@ return [
         'title' => '標題',
         'username' => '使用者名字',
         'year' => '年',
+        'purpose' => '目的',
+        'unit' => '單位',
     ],
 ];

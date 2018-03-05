@@ -69,7 +69,7 @@ class UserController extends Controller
 
         SendSignUpMailJob::dispatch($mail_binding);
 
-        return redirect('user')->with('signUp','ok');
+        return redirect('/')->with('signUp','ok');
     }
 
     public function signIn(){
@@ -139,6 +139,8 @@ class UserController extends Controller
     public function updatePassword(){
         $binding = [
             'navMenu' => [
+                ['url'=>'lend/','title'=>'借用申請'],
+                ['url'=>'lend/records','title'=>'申請紀錄'],
                 ['url'=>'user/update-password','title'=>'修改密碼'],
                 'divider',
                 ['url'=>'user/sign-out','title'=>'登出'],

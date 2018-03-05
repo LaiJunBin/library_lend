@@ -37,7 +37,7 @@ class SendSignUpMailJob implements ShouldQueue
         Mail::send('email.signUpEmail',$mail_binding,function($mail) use ($mail_binding){
             $mail->to($mail_binding['email']);
             $mail->from('xyz607xx@gmail.com');
-            $mail->subject('恭喜註冊MyHome成功');
+            $mail->subject('恭喜註冊 圖書館借用系統 成功');
         });
     }
 }

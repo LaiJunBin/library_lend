@@ -17,10 +17,10 @@ class CreateLendRecordsTable extends Migration
             $table->increments('id');
             $table->string('unit');
             $table->string('teacher');
-            $table->string('hour');
-            $table->date('lend_date');
-            $table->text('description');
-            $table->string('verification');
+            $table->string('lendTime');
+            $table->date('date');
+            $table->text('purpose');
+            $table->string('verification')->default('F');
             $table->timestamps();
         });
     }

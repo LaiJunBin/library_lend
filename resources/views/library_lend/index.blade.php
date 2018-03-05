@@ -12,6 +12,9 @@
     @elseif(session()->has('updatePasswordSuccess'))
         @include('components.updatePasswordSuccess')
         {{session()->forget('updatePasswordSuccess')}}
+    @elseif(session()->has('lendSuccess'))
+        @include('components.lendSuccess')
+        {{session()->forget('lendSuccess')}}
     @endif
 @endsection
 

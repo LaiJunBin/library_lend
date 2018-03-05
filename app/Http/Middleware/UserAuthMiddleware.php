@@ -19,7 +19,7 @@ class UserAuthMiddleware
         $user_email = session('user_email');
         $is_allow_access = $user_email != null;
         if(!$is_allow_access)
-            return redirect('/user');
+            return redirect('/');
         return $next($request);
     }
 }

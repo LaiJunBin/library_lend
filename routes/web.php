@@ -41,7 +41,7 @@ Route::group(['prefix'=>'lend'],function(){
         Route::delete('/{id}/delete','LibraryLendController@recordsDelete')->middleware(['user.auth']);
     });
     Route::group(['prefix'=>'/verification'],function(){
-        Route::get('/','LibraryLendController@verification');
-        Route::put('/{id}','LibraryLendController@verificationProcess');
+        Route::get('/','LibraryLendController@verification')->middleware(['user.admin.auth']);
+        Route::put('/{id}','LibraryLendController@verificationProcess')->middleware(['user.admin.auth']);
     });
 });

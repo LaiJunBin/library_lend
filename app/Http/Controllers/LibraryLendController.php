@@ -7,6 +7,7 @@ use Validator;
 use App\LendRecord;
 use App\Services\BindingService;
 use App\Services\LendRecordService;
+Use App\Jobs\SendSignUpMailJob;
 
 class LibraryLendController extends Controller
 {
@@ -53,6 +54,7 @@ class LibraryLendController extends Controller
                 $input['lendTime'] = implode(',',$input['customTime']);
                 break;
         }
+        $input['email'] = session('user_email');
         LendRecord::create($input);
         return redirect('/')->with('lendSuccess','T');
     }
@@ -79,10 +81,19 @@ class LibraryLendController extends Controller
 
     public function verificationProcess($id){
         $input = Request()->all();
-        $record = LendRecord::where('id',$id)->update([
-            'response' => $input['response'],
+        LendRecord::where('id',$id)->update([
+            'response' => $input['response']??' ',
             'verification' => $input['solution']
-        ]);;
+        ]);
+        $lendRecord = LendRecord::where('id',$id)->first();
+        $mail_binding = [
+            'email' => $lendRecord->email,
+            'title' => '圖書館借用申請成功',
+            'template' => 'email.lendVerificationEmail',
+            'date' => $lendRecord->date
+        ];
+        SendSignUpMailJob::dispatch($mail_binding);
+
         return redirect('lend/verification');
     }
 }

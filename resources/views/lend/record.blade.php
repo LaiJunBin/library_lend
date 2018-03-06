@@ -14,7 +14,7 @@
                 借用時段： {{$record['lendTime']}} <br>
                 借用目的： {{$record['purpose']}} <br>
                 當前狀態： {{$record['verification']}}
-                @if ($record['response'] != '')
+                @if (trim($record['response']) != '')
                     <br>管理員回覆： <pre>{{$record['response']}}</pre>
                 @endif
                 <form action="records/{{ $record['id'] }}/delete" method="post">

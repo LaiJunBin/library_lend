@@ -34,10 +34,10 @@ class SendSignUpMailJob implements ShouldQueue
     public function handle()
     {
         $mail_binding = $this->mail_binding;
-        Mail::send('email.signUpEmail',$mail_binding,function($mail) use ($mail_binding){
+        Mail::send($mail_binding['template'],$mail_binding,function($mail) use ($mail_binding){
             $mail->to($mail_binding['email']);
             $mail->from('xyz607xx@gmail.com');
-            $mail->subject('恭喜註冊 圖書館借用系統 成功');
+            $mail->subject($mail_binding['title']);
         });
     }
 }

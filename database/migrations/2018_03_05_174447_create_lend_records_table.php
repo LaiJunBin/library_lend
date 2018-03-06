@@ -20,6 +20,7 @@ class CreateLendRecordsTable extends Migration
             $table->string('lendTime');
             $table->date('date');
             $table->text('purpose');
+            $table->string('email');
             $table->string('response')->default(' ');
             $table->string('verification')->default('F');
             $table->timestamps();

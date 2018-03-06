@@ -54,9 +54,10 @@ class UserController extends Controller
         $mail_binding = [
             'name' => $input['name'],
             'email' => $input['email'],
-            'url' => url('user/verification/'.$input['name']."/".$input['verification'])
+            'url' => url('user/verification/'.$input['name']."/".$input['verification']),
+            'title' => '恭喜註冊 圖書館借用系統 成功',
+            'template' => 'email.signUpEmail'
         ];
-
         SendSignUpMailJob::dispatch($mail_binding);
 
         return redirect('/')->with('signUp','ok');

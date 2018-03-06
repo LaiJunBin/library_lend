@@ -40,4 +40,8 @@ Route::group(['prefix'=>'lend'],function(){
         Route::get('/','LibraryLendController@records')->middleware(['user.auth']);
         Route::delete('/{id}/delete','LibraryLendController@recordsDelete')->middleware(['user.auth']);
     });
+    Route::group(['prefix'=>'/verification'],function(){
+        Route::get('/','LibraryLendController@verification');
+        Route::put('/{id}','LibraryLendController@verificationProcess');
+    });
 });

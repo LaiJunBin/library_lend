@@ -28,7 +28,6 @@
 
 
 @section('breadcrumb')
-{{dd($breadcrumb)}}
     @foreach ($breadcrumb as $item)
         @if ($loop->last)
             <li class="active">{{ $item }}</li>
@@ -37,3 +36,10 @@
         @endif
     @endforeach
 @endsection
+
+@if (session()->has('user_name') and $user_type == 'A')
+    @section('navMenu')
+        @section('navbarAlign','right')
+        <li><a href="{{url('lend/verification')}}">審核申請</a></li>
+    @endsection  
+@endif

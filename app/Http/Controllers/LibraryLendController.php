@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\LendRecord;
 use App\Services\BindingService;
+use App\Services\LendRecordService;
 
 class LibraryLendController extends Controller
 {
@@ -57,45 +58,7 @@ class LibraryLendController extends Controller
     }
 
     public function records(){
-        $records = LendRecord::where(['teacher'=>session('user_name')])->get()->toarray();
-        $record = [];
-        foreach($records as $index => $values){
-            foreach($values as $key => $value){
-                switch($key){
-                    case 'lendTime':
-                            $timeArray = explode(',',$value);
-                            $tempArray = [];
-                            foreach($timeArray as $time){
-                                if($time == 'noon'){
-                                    array_push($tempArray,'午休時間');
-                                }else{
-                                    array_push($tempArray,'第'.$time.'節');
-                                }
-                            }
-                            $record[$index]['lendTime'] = implode(',',$tempArray);
-                        break;
-                    case 'verification':
-                        switch($value){
-                            case 'T':
-                                $record[$index]['color'] = 'success';
-                                $record[$index]['verification']='可使用';
-                                break;
-                            case 'F':
-                                $record[$index]['color'] = 'warning';
-                                $record[$index]['verification']='待審核';
-                                break;
-                            default:
-                                $record[$index]['color'] = 'danger';
-                                $record[$index]['verification']='不可使用';
-                                break;
-                        }
-                        break;
-                    default:
-                        $record[$index][$key] = $value;
-                }
-            }
-        }
-        // 'records' => $record
+        $record = LendRecordService::getRecord(['teacher' => session('user_name')]);
         $binding = BindingService::binding();
         $binding['records'] = $record;
         return view('lend.record',$binding);
@@ -105,5 +68,21 @@ class LibraryLendController extends Controller
         $records = LendRecord::where('id',$id)->first();
         $records->delete();
         return redirect('/lend/records');
+    }
+
+    public function verification(){
+        $record = LendRecordService::getRecord(['verification' => 'F']);
+        $binding = BindingService::binding();
+        $binding['records'] = $record;
+        return view('lend.verification',$binding);
+    }
+
+    public function verificationProcess($id){
+        $input = Request()->all();
+        $record = LendRecord::where('id',$id)->update([
+            'response' => $input['response'],
+            'verification' => $input['solution']
+        ]);;
+        return redirect('lend/verification');
     }
 }

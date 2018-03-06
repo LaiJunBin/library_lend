@@ -4,9 +4,12 @@
 
 @section('content')
     @include('components.validatorErrorMessage')
+    
     <span style="color:red">*為必填欄位</span>
     <button class="btn btn-info" id="writeExample">填寫範例</button>
-        
+    <a href="{{url('lend/records')}}">
+        <button class="btn btn-warning">申請紀錄</button>
+    </a>
     <form action="{{ url('lend/') }}" method="post">
         {{csrf_field()}}
         <label for="username">借用單位：</label>

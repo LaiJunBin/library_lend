@@ -16,7 +16,7 @@
         <input type="checkbox" class="timeGroup" name="time" value="pm"><label for="time">整個下午(5~7)</label><br>
         <input type="checkbox" class="timeGroup" name="time" value="custom"><label for="time">自定義</label>
         <div id="customTimeGroup">
-            <input type="checkbox" disabled name="customTime[]"  value="{{old('customTime[]')}}" value="1"><label for="custom">第一節(8:10~9:00)</label><br>
+            <input type="checkbox" disabled name="customTime[]" value="1"><label for="custom">第一節(8:10~9:00)</label><br>
             <input type="checkbox" disabled name="customTime[]" value="2"><label for="custom">第二節(9:10~10:00)</label><br>
             <input type="checkbox" disabled name="customTime[]" value="3"><label for="custom">第三節(10:10~11:00)</label><br>
             <input type="checkbox" disabled name="customTime[]" value="4"><label for="custom">第四節(11:10~12:00)</label><br>

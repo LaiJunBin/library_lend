@@ -8,23 +8,13 @@ use App\RegisterUser;
 Use App\User;
 use Hash;
 Use App\Jobs\SendSignUpMailJob;
-use Illuminate\Support\Facades\Route;
+use App\Services\BindingService;
 
 class UserController extends Controller
 {
     
     public function signUp(){
-        $binding = [
-            'navMenu' => [
-                ['url'=>'user/sign-in','title'=>'登入'],
-                ['url'=>'user/sign-up','title'=>'註冊']
-            ],
-            'breadcrumb' =>[
-                ['url'=>'/','title'=>'首頁'],
-                '註冊'
-            ]
-        ];
-        return view('user.signUp',$binding);
+        return view('user.signUp',BindingService::binding());
     }
     public function signUpProcess(){
         $input = request()->all();
@@ -73,17 +63,7 @@ class UserController extends Controller
     }
 
     public function signIn(){
-        $binding = [
-            'navMenu' => [
-                ['url'=>'user/sign-in','title'=>'登入'],
-                ['url'=>'user/sign-up','title'=>'註冊']
-            ],
-            'breadcrumb' =>[
-                ['url'=>'/','title'=>'首頁'],
-                '登入'
-            ]
-        ];
-        return view('user.signIn',$binding);
+        return view('user.signIn',BindingService::binding());
     }
 
     public function signInProcess(){
@@ -137,24 +117,8 @@ class UserController extends Controller
     }
 
     public function updatePassword(){
-        $binding = [
-            'navMenu' => [
-                ['url'=>'lend/','title'=>'借用申請'],
-                ['url'=>'lend/records','title'=>'申請紀錄'],
-                ['url'=>'user/update-password','title'=>'修改密碼'],
-                'divider',
-                ['url'=>'user/sign-out','title'=>'登出'],
-            ],
-            'user_name' => '使用者：'.session('user_name'),
-            'breadcrumb' =>[
-                ['url'=>'/','title'=>'首頁'],
-                '修改密碼'
-            ]
-        ];
-        //取得當前路由
-        // $currentPath= Route::getFacadeRoot()->current()->uri();
 
-        return view('user.updatePassword',$binding);
+        return view('user.updatePassword',BindingService::binding());
     }
 
     public function updatePasswordProcess(){

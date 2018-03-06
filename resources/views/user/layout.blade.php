@@ -25,10 +25,10 @@
             @endforeach
         @endsection
     @endif
-    
 
 
 @section('breadcrumb')
+{{dd($breadcrumb)}}
     @foreach ($breadcrumb as $item)
         @if ($loop->last)
             <li class="active">{{ $item }}</li>

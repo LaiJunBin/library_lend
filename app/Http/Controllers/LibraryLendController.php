@@ -5,52 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\LendRecord;
-
+use App\Services\BindingService;
 
 class LibraryLendController extends Controller
 {
+
     public function index(){
-        $binding = [];
-        if(session()->has('user_name')){
-            $binding = [
-                'breadcrumb' => ['首頁'],
-                'navMenu' => [
-                    ['url'=>'lend/','title'=>'借用申請'],
-                    ['url'=>'lend/records','title'=>'申請紀錄'],
-                    ['url'=>'user/update-password','title'=>'修改密碼'],
-                    'divider',
-                    ['url'=>'user/sign-out','title'=>'登出'],
-                ],
-                'user_name' => '使用者：'.session('user_name')
-            ];
-        }else{
-            $binding = [
-                'breadcrumb' => ['首頁'],
-                'navMenu' => [
-                    ['url'=>'user/sign-in','title'=>'登入'],
-                    ['url'=>'user/sign-up','title'=>'註冊']
-                ]
-            ];
-        }
-        return view('library_lend.index',$binding);
+        return view('library_lend.index',BindingService::binding());
     }
 
     public function lend(){
-        $binding = [
-            'breadcrumb' =>[
-                ['url'=>'/','title'=>'首頁'],
-                '借用申請'
-            ],
-            'navMenu' => [
-                ['url'=>'lend/','title'=>'借用申請'],
-                ['url'=>'lend/records','title'=>'申請紀錄'],
-                ['url'=>'user/update-password','title'=>'修改密碼'],
-                'divider',
-                ['url'=>'user/sign-out','title'=>'登出'],
-            ],
-            'user_name' => '使用者：'.session('user_name')
-        ];
-        return view('lend.index',$binding);
+        return view('lend.index',BindingService::binding());
     }
 
     public function lendProcess(){
@@ -130,21 +95,9 @@ class LibraryLendController extends Controller
                 }
             }
         }
-        $binding = [
-            'breadcrumb' =>[
-                ['url'=>'/','title'=>'首頁'],
-                '申請紀錄'
-            ],
-            'navMenu' => [
-                ['url'=>'lend/','title'=>'借用申請'],
-                ['url'=>'lend/records','title'=>'申請紀錄'],
-                ['url'=>'user/update-password','title'=>'修改密碼'],
-                'divider',
-                ['url'=>'user/sign-out','title'=>'登出'],
-            ],
-            'user_name' => '使用者：'.session('user_name'),
-            'records' => $record
-        ];
+        // 'records' => $record
+        $binding = BindingService::binding();
+        $binding['records'] = $record;
         return view('lend.record',$binding);
     }
 

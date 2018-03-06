@@ -3,7 +3,7 @@
 
 
 @section('content')
-    @foreach ($records as $record)
+    @forelse ($records as $record)
         <div class="panel panel-{{ $record['color'] }}">
             <div class="panel-heading">
                 <h3 class="panel-title">{{$record['created_at'].' 時申請'}}</h3>
@@ -27,8 +27,9 @@
                 </form>
             </div>
         </div>
-    @endforeach
-    
+        @empty
+        <div class="alert alert-warning" role="alert">沒有任何申請紀錄</div>
+    @endforelse
     
 
 @endsection

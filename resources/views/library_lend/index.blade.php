@@ -31,7 +31,7 @@
         </tr>
             @while ($current_day <= $max_day)
                 <tr style="text-align:center;">
-                    @while (list($key,$value) = each($week))
+                    @foreach ($week as $value)
                         @if ($week_day['d'.$current_day] == $value)
                             @php
                                 $switch = false;
@@ -54,8 +54,7 @@
                         @if ($current_day>$max_day)
                             @break;
                         @endif
-                    @endwhile
-                    @php (reset($week))
+                    @endforeach
                 </tr>
             @endwhile
     </table>

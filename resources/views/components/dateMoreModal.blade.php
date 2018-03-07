@@ -50,7 +50,7 @@
                 var times = item.lendTime.split(',');
                 times.forEach(function(time){
                     var currentTime = $('#'+time+' td');
-                    currentTime.eq(1).text(item.unit);
+                    currentTime.eq(1).text((item.unit.trim())==''?'無':item.unit);
                     currentTime.eq(2).text(item.teacher);
                     currentTime.eq(3).text(item.purpose);
                 });

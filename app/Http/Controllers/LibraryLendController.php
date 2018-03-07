@@ -12,8 +12,26 @@ Use App\Jobs\SendSignUpMailJob;
 class LibraryLendController extends Controller
 {
 
-    public function index(){
-        return view('library_lend.index',BindingService::binding());
+    public function index($y=null,$m=null){
+        $Y = $y ?? date('Y');
+        $M = $m ?? date('m');
+        $D = 1;
+        $binding = BindingService::binding();
+        $week=Array("日","一","二","三","四","五","六");
+        $binding['currentMourh'] = $Y.'年'.$M.'月';
+        $binding['prevMouth'] = date("Y/m", mktime(0, 0, 0, $M-1, $D, $Y));
+        $binding['nextMouth'] = date("Y/m", mktime(0, 0, 0, $M+1, $D, $Y));
+        do{
+            $binding['week_day'][$D] = $week[date("w", mktime(0,0,0,$M,$D,$Y))];
+            $binding['day'][$D]=LendRecordService::getRecord(['date'=>$Y.'-'.$M.'-'.$D]);
+            list($Y,$M,$D) = explode('/',date("Y/m/d", mktime(0, 0, 0, $M, $D+1, $Y)));
+            $D = (int)$D;
+        }while($D != 1);
+        $binding['week'] = $week;
+        $binding['max_day'] = (int)date("d", mktime(0, 0, 0, $M, $D-1, $Y));
+        $binding['current_day'] = 1;
+        // dd($binding);
+        return view('library_lend.index',$binding);
     }
 
     public function lend(){

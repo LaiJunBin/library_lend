@@ -22,13 +22,17 @@ class BindingService
             'records' => ['title'=> '申請紀錄','url' => '/records'],
             'verification' => ['title'=>'審核申請','url'=>'/verification'],
         ];
-        if(count($paths)!=0){
+        if(count(array_filter($paths,function($x) use($pathObj){
+            return in_array($x,array_keys($pathObj));
+        }))!=0){
             array_unshift($breadcrumb,$pathObj['']);
             for($i = 0 ; $i < count($paths) ; $i++){
-                if($i == count($paths)-1)
-                    array_push($breadcrumb,$pathObj[$paths[$i]]['title']);
-                else
-                    array_push($breadcrumb,$pathObj[$paths[$i]]);
+                if(in_array($paths[$i],array_keys($pathObj))){
+                    if($i == count($paths)-1)
+                        array_push($breadcrumb,$pathObj[$paths[$i]]['title']);
+                    else
+                        array_push($breadcrumb,$pathObj[$paths[$i]]);
+                }
             }
         }else{
             $breadcrumb = ['首頁'];

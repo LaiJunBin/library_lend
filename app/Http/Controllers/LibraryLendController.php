@@ -108,7 +108,8 @@ class LibraryLendController extends Controller
             'email' => $lendRecord->email,
             'title' => '圖書館借用申請成功',
             'template' => 'email.lendVerificationEmail',
-            'date' => $lendRecord->date
+            'date' => $lendRecord->date,
+            'url' => url('/lend/records')
         ];
         SendSignUpMailJob::dispatch($mail_binding);
 

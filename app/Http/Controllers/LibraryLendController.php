@@ -24,7 +24,6 @@ class LibraryLendController extends Controller
         $input = Request()->all();
         $rules = [
             'unit'=>[
-                'required',
                 'max:10',
             ],
             'date'=>[
@@ -42,6 +41,7 @@ class LibraryLendController extends Controller
             return redirect('/lend')->withErrors($validator)->withInput();
         }
         $input['teacher'] = session('user_name');
+        $input['unit'] = $input['unit'] ?? ' ';
         $type = $input['time'];
         switch($type){
             case 'am':

@@ -9,7 +9,9 @@
                 <h3 class="panel-title">{{$record['created_at'].' 時申請'}}</h3>
             </div>
             <div class="panel-body">
-                申請單位： {{$record['unit']}} <br>
+                @if (trim($record['unit'])!= '')
+                    申請單位： {{$record['unit']}} <br>
+                @endif
                 借用日期： {{$record['date']}} <br>
                 借用時段： {{$record['lendTime']}} <br>
                 借用目的： {{$record['purpose']}} <br>

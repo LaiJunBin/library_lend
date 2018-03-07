@@ -13,7 +13,9 @@
                     <tr>
                         <td>
                             借用老師： {{$record['teacher']}} <br>
-                            申請單位： {{$record['unit']}} <br>
+                            @if (trim($record['unit'])!= '')
+                                申請單位： {{$record['unit']}} <br>
+                            @endif
                             借用日期： {{$record['date']}} <br>
                             借用時段： {{$record['lendTime']}}
                         </td>

@@ -22,8 +22,8 @@ class LibraryLendController extends Controller
         $binding['prevMouth'] = date("Y/m", mktime(0, 0, 0, $M-1, $D, $Y));
         $binding['nextMouth'] = date("Y/m", mktime(0, 0, 0, $M+1, $D, $Y));
         do{
-            $binding['week_day'][$D] = $week[date("w", mktime(0,0,0,$M,$D,$Y))];
-            $binding['day'][$D]=LendRecordService::getRecord(['date'=>$Y.'-'.$M.'-'.$D]);
+            $binding['week_day']['d'.$D] = $week[date("w", mktime(0,0,0,$M,$D,$Y))];
+            $binding['day']['d'.$D]=LendRecordService::getRecord(['date'=>$Y.'-'.$M.'-'.$D]);
             list($Y,$M,$D) = explode('/',date("Y/m/d", mktime(0, 0, 0, $M, $D+1, $Y)));
             $D = (int)$D;
         }while($D != 1);

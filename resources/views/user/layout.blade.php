@@ -1,6 +1,6 @@
 @extends('layout') 
 @section('brandUrl',url('/'))
-@section('brandName','圖書館借用系統') 
+@section('brandName','穀保家商圖書館借用系統') 
 
 
     @if (session()->has('user_name'))

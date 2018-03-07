@@ -24,7 +24,7 @@
         </tr>
     </table>
     <table class="table">
-        <tr>
+        <tr class="info" style="margin:10px;">
             @foreach ($week as $w)
                 <th style="text-align:center;">{{$w}}</td>
             @endforeach

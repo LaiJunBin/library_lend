@@ -1,3 +1,9 @@
+html,
+body,
+.container {
+    height: 100%;
+}
+
 form {
     line-height: 200%;
 }
@@ -19,4 +25,11 @@ input[type=checkbox]~label {
 
 #customTimeGroup {
     display: none;
+}
+
+footer {
+    position: absolute;
+    text-align: center;
+    bottom: 10px;
+    left: 0;
 }

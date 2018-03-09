@@ -1,7 +1,16 @@
-html,
 body,
 .container {
     height: 100%;
+}
+
+* {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+input,
+textarea {
+    opacity: .75;
 }
 
 form {
@@ -30,6 +39,6 @@ input[type=checkbox]~label {
 footer {
     position: absolute;
     text-align: center;
-    bottom: 10px;
+    bottom: 0;
     left: 0;
 }

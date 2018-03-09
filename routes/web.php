@@ -16,7 +16,6 @@
 
 Route::get('/','LibraryLendController@index');
 Route::get('/date/{y}/{m}','LibraryLendController@index');
-
 Route::group(['prefix' => 'user'],function(){
     //登入介面
     Route::get('/sign-in','UserController@signIn');

@@ -5,7 +5,7 @@
     @include('components.successModal')
     <span style="color:red">*</span>
     <span class="glyphicon glyphicon-stop" style="color:#fff388;"></span>
-    代表當天有被借用，點擊可看詳細資訊。
+    <span style="font-size:20px;">  代表當天有被借用，點擊可看詳細資訊。</span>
     <table class="table">
         <tr>
             <td style="text-align:left;">
@@ -17,14 +17,15 @@
             <td style="text-align:center;">{{$currentMourh}}</td>
             <td style="text-align:right;">
                 <a href="{{url('date/'.$nextMouth)}}">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    
                     下個月
+                    <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
             </td>
         </tr>
     </table>
     <table class="table">
-        <tr class="info" style="margin:10px;">
+        <tr bgcolor="#FFF0F5" style="margin:10px;">
             @foreach ($week as $w)
                 <th style="text-align:center;">{{$w}}</td>
             @endforeach

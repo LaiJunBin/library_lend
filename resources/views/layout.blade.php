@@ -9,6 +9,17 @@
     <script src="{{ URL::asset('assets/bower/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <link rel="stylesheet" href="{{ URL::asset('assets/bower/bootstrap/dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/main.css') }}">
+    <style>
+        body{
+            position:relative;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: 100% 100%;
+            background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.6) 100%), url('{{url('images/'.$background.'.jpg')}}');
+            padding-bottom:30px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">

@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="@yield('brandUrl')" class="brand navbar-brand">@yield('brandName')</a>
+            <a href="@yield('brandUrl')" class="brand navbar-brand" style="font-size:22px;">@yield('brandName')</a>
         </div>
         <div class="collapse navbar-collapse" id="topMenu">
             <ul class="nav navbar-nav navbar-right">

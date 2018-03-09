@@ -59,6 +59,7 @@ class BindingService
             ];
         }
         $binding['breadcrumb'] = $breadcrumb;
+        $binding['background'] = (count($breadcrumb)==1)? 'background':'contentBackground';
         return $binding;
     }
 }

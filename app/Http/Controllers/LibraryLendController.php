@@ -106,10 +106,11 @@ class LibraryLendController extends Controller
         $lendRecord = LendRecord::where('id',$id)->first();
         $mail_binding = [
             'email' => $lendRecord->email,
-            'title' => '圖書館借用申請成功',
+            'title' => '圖書館借用申請結果',
             'template' => 'email.lendVerificationEmail',
             'date' => $lendRecord->date,
-            'url' => url('/lend/records')
+            'url' => url('/lend/records'),
+            'result' => ($input['solution']=='T')?'同意使用':'不同意使用'
         ];
         SendSignUpMailJob::dispatch($mail_binding);
 

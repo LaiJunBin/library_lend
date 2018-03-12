@@ -42,3 +42,7 @@ footer {
     bottom: 0;
     left: 0;
 }
+
+.form-control {
+    color: #000;
+}

@@ -27,7 +27,8 @@ class UserController extends Controller
             'email'=>[
                 'required',
                 'max:150',
-                'email'
+                'email',
+                'regex:/@kpvs.ntpc.edu.tw$/'
             ],
             'password'=>[
                 'required',

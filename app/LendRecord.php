@@ -15,7 +15,7 @@ class LendRecord extends Model
      * @var array
      */
     protected $fillable = [
-        'unit','teacher','lendTime','date','purpose','email'
+        'unit','teacher','lendTime','date','purpose','email','verification'
     ];
 
     /**

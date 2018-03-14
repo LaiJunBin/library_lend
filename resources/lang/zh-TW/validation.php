@@ -142,5 +142,6 @@ return [
         'year' => '年',
         'purpose' => '目的',
         'unit' => '單位',
+        'teacher' => '老師',
     ],
 ];

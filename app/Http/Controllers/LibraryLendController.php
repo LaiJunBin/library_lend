@@ -78,7 +78,7 @@ class LibraryLendController extends Controller
     }
 
     public function records(){
-        $record = LendRecordService::getRecord(['teacher' => session('user_name')]);
+        $record = LendRecordService::getRecord(['email' => session('user_email')]);
         $binding = BindingService::binding();
         $binding['records'] = $record;
         return view('lend.record',$binding);
@@ -115,5 +115,52 @@ class LibraryLendController extends Controller
         SendSignUpMailJob::dispatch($mail_binding);
 
         return redirect('lend/verification');
+    }
+
+    public function preLend(){
+        return view('lend.preLend',BindingService::binding());
+    }
+
+    public function preLendProcess(){
+        $input = Request()->all();
+        $rules = [
+            'teacher'=>[
+                'max:10',
+            ],
+            'unit'=>[
+                'max:10',
+            ],
+            'date'=>[
+                'required',
+                'date',
+                'after:'.date("Y/m/d", mktime(0, 0, 0, date('m'), date('d')-1, date('Y'))),
+            ],
+            'purpose'=>[
+                'required',
+                'max:191',
+            ]
+        ];
+        $validator = Validator::make($input,$rules);
+        if($validator->fails()){
+            return redirect('/lend/preLend')->withErrors($validator)->withInput();
+        }
+        $input['teacher'] = $input['teacher'] ?? session('user_name');
+        $input['unit'] = $input['unit'] ?? ' ';
+        $type = $input['time'];
+        switch($type){
+            case 'am':
+                $input['lendTime'] = '1,2,3,4';
+                break;
+            case 'pm':
+                $input['lendTime'] = '5,6,7';
+                break;
+            case 'custom':
+                $input['lendTime'] = implode(',',$input['customTime']);
+                break;
+        }
+        $input['email']=session('user_email');
+        $input['verification']='T';
+        LendRecord::create($input);
+        return redirect('/')->with('preLendSuccess','T');
     }
 }

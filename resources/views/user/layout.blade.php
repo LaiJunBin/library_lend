@@ -40,6 +40,7 @@
 @if (session()->has('user_name') and $user_type == 'A')
     @section('navMenu')
         @section('navbarAlign','right')
+        <li><a href="{{url('lend/preLend')}}">填表預借</a></li>
         <li><a href="{{url('lend/verification')}}">審核申請</a></li>
     @endsection  
 @endif

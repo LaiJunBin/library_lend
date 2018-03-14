@@ -16,5 +16,10 @@
 @elseif(session()->has('forgetUserSuccess'))
     @include('components.forgetUserSuccess')
     {{session()->forget('forgetUserSuccess')}}
+@elseif(session()->has('preLendSuccess'))
+    @include('components.preLendSuccess')
+    {{session()->forget('preLendSuccess')}}
 @endif
+
+
 

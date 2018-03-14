@@ -7,7 +7,7 @@ class LendRecordService
 {
     static function getRecord($pattern){
         if($pattern != null)
-            $records = LendRecord::where($pattern)->get()->toarray();
+            $records = LendRecord::where($pattern)->orderBy('created_at','desc')->get()->toarray();
         else
             $records = LendRecord::get()->toarray();
         $record = [];

@@ -50,4 +50,6 @@ Route::group(['prefix'=>'lend'],function(){
         Route::get('/','LibraryLendController@verification')->middleware(['user.admin.auth']);
         Route::put('/{id}','LibraryLendController@verificationProcess')->middleware(['user.admin.auth']);
     });
+    Route::get('/preLend','LibraryLendController@preLend')->middleware(['user.admin.auth']);
+    Route::post('/preLend','LibraryLendController@preLendProcess')->middleware(['user.admin.auth']);
 });

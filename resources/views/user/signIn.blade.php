@@ -10,6 +10,7 @@
         <input class="form-control" type="text" name="email" placeholder="請輸入信箱" value="{{old('email')}}">
         <label for="password">請輸入密碼：</label>
         <input class="form-control" type="password" name="password" placeholder="請輸入密碼">
+        <a href="{{URL('user/forgetPassword')}}" style="color:red;">忘記密碼?</a>
         <button type="submit" class="btn btn-success">登入</button>
     </form>
 @endsection

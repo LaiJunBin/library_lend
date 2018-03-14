@@ -33,6 +33,10 @@ Route::group(['prefix' => 'user'],function(){
     Route::get('update-password','UserController@updatePassword')->middleware(['user.auth']);
     //更改密碼的處理
     Route::put('/update-password','UserController@updatePasswordProcess')->middleware(['user.auth']);
+    //忘記密碼介面
+    Route::get('/forgetPassword','UserController@forgetPassword');
+    Route::post('/forgetPassword','UserController@forgetPasswordProcess');
+    Route::get('/forgetPassword/verification/{user}/{code}','UserController@forgetPasswordVerification');
 });
 
 Route::group(['prefix'=>'lend'],function(){

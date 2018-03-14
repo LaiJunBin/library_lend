@@ -10,4 +10,11 @@
 @elseif(session()->has('lendSuccess'))
     @include('components.lendSuccess')
     {{session()->forget('lendSuccess')}}
+@elseif(session()->has('forgetUser'))
+    @include('components.forgetUser')
+    {{session()->forget('forgetUser')}}
+@elseif(session()->has('forgetUserSuccess'))
+    @include('components.forgetUserSuccess')
+    {{session()->forget('forgetUserSuccess')}}
 @endif
+

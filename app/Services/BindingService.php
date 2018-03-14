@@ -21,6 +21,7 @@ class BindingService
             'lend' => ['title'=> '借用申請','url' => '/lend'],
             'records' => ['title'=> '申請紀錄','url' => '/records'],
             'verification' => ['title'=>'審核申請','url'=>'/verification'],
+            'forgetPassword' => ['title'=>'忘記密碼','url'=>'/forgetPassword'],
         ];
         if(count(array_filter($paths,function($x) use($pathObj){
             return in_array($x,array_keys($pathObj));

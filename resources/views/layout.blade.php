@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,7 @@
     <script src="{{ URL::asset('assets/bower/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <link rel="stylesheet" href="{{ URL::asset('assets/bower/bootstrap/dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/main.css') }}">
+    <link rel="icon" href="{{URL::asset('icon/kpvs.jpg')}}" type="image/jpg" sizes="16x16">
     <style>
         body{
             position:relative;
@@ -33,7 +34,7 @@
             @yield('content')
         </main>
         <footer class="page-footer font-small blue pt-4 mt-4 text-center">
-            由資料處理科賴俊賓製作<a class="github-button" href="https://github.com/xyz607xx" aria-label="Follow @xyz607xx on GitHub">GitHub</a>
+            資料處理科賴俊賓製作<a class="github-button" href="https://github.com/xyz607xx" aria-label="Follow @xyz607xx on GitHub">GitHub</a>
             <a class="github-button" href="https://github.com/xyz607xx/library_lend" aria-label="Watch ntkme/github-buttons on GitHub">Watch</a>
             <script src="https://buttons.github.io/buttons.js"></script>
             <script src="https://buttons.github.io/buttons.js"></script>

@@ -1,11 +1,23 @@
-@extends('user.layout') 
+﻿@extends('user.layout') 
 @section('title','圖書館借用系統') 
 
 @section('content')
+    <style>
+        #dateTable td{
+	    vertical-align: inherit !important;
+	    font-size:20px !important;
+        }
+        #dateTable td a{
+            font-size:20px !important;
+        }
+	
+    </style>
     @include('components.successModal')
-    <span style="color:red">*</span>
-    <span class="glyphicon glyphicon-stop" style="color:#fff388;"></span>
-    <span style="font-size:20px;">  代表當天有被借用，點擊可看詳細資訊。</span>
+    <div style="border: 1px solid #333;border-radius: 4px;">
+        <span style="color:red;font-size:20px;vertical-align: sub;">*</span>
+        <span class="glyphicon glyphicon-stop" style="color:#fff388;transform: scale(1.5);"></span>
+        <span style="font-size:20px;color:black;">  代表當天有被借用，點擊可看詳細資訊。</span>
+    </div>
     <table class="table">
         <tr>
             <td style="text-align:left;">
@@ -24,7 +36,7 @@
             </td>
         </tr>
     </table>
-    <table class="table">
+    <table class="table" id="dateTable">
         <tr bgcolor="#FFF0F5" style="margin:10px;">
             @foreach ($week as $w)
                 <th style="text-align:center;">{{$w}}</td>
@@ -60,5 +72,21 @@
             @endwhile
     </table>
     @include('components.dateMoreModal',['data'=>json_encode($day)])
+    <script>
+        $(function(){
+            $(window).resize(footerLayout);
+            function footerLayout(){
+                
+                if($(document).height()>$(window).height()){
+                    $('footer').css('top',$(document).height()+'px');
+                    console.log(1)
+                }else{
+                    $('footer').css('top','');
+                    console.log(2)
+                }
+            }
+            footerLayout();
+        });
+    </script>
 @endsection
 

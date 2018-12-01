@@ -1,1 +1,1 @@
-Publish in http://food.kpvs.ntpc.edu.tw/library_lend/
+Publish in http://kpdp.kpvs.ntpc.edu.tw/library_lend/
